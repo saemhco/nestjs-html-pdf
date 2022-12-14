@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+    <body>
+        <div class="card">
+            <div class="card-body">
+                <div class="container mb-5 mt-3">
+                <div class="row d-flex align-items-baseline">
+                    <div class="col-xl-9">
+                    <p style="color: #7e8d9f;font-size: 20px;">Invoice &gt;&gt; <strong>ID: {{invoiceId}}</strong></p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="col-md-12">
+                    </div>
+                    <div class="row">
+                    <div class="col-8">
+                        <ul class="list-unstyled">
+                        <li class="text-muted">To: <span style="color:#8f8061 ;">{{customerName}}</span></li>
+                        <li class="text-muted">{{customerAddress}} | {{customerState}}, {{customerCountry}}</li>
+                        <li class="text-muted"><i class="fas fa-phone"></i> {{customerPhone}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-4">
+                        <ul class="list-unstyled">
+                        <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
+                            class="fw-bold">ID:</span>#123-456</li>
+                        <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061;"></i> 
+                            <span class="me-1 fw-bold">Status:</span>
+                                {{#ifCond status "===" "paid"}}
+                                <span class="badge bg-warning text-black fw-bold">Unpaid</span>
+                                {{/ifCond}}
+                                 {{#ifCond status "===" "unpaid"}}
+                                <span class="badge bg-success text-black fw-bold">Paid</span>
+                                {{/ifCond}}   
+                        </li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="row my-2 mx-1 justify-content-center">
+                        {{#each items}}
+                        <div class="col-md-2 mb-4 mb-md-0">
+                            <div class="bg-image ripple rounded-5 mb-4 overflow-hidden d-block" data-ripple-color="light">
+                            <img src="{{image}}" class="w-100" height="100px" alt="Elegant shoes and shirt" />
+                            <a href="#!">
+                                <div class="hover-overlay">
+                                <div class="mask" style="background-color: hsla(0, 0%, 98.4%, 0.2)"></div>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                        <div class="col-md-7 mb-4 mb-md-0">
+                            <p class="fw-bold">{{description}}</p>
+                            <p class="mb-1">
+                            <span class="text-muted me-2">Size:</span><span>{{detail.size}}</span>
+                            </p>
+                            <p>
+                            <span class="text-muted me-2">Color:</span><span>{{detail.color}}</span>
+                            </p>
+                        </div>
+                        <div class="col-md-3 mb-4 mb-md-0">
+                            <h5 class="mb-2">
+                            <s class="text-muted me-2 small align-middle">${{price.price0}}</s><span class="align-middle">${{price.price}}</span>
+                            </h5>
+                            <p class="text-danger"><small>You save {{price.save}}%</small></p>
+                        </div>
+                        {{/each}}
+                        
+                    <hr>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3">
+                            <ul class="list-unstyled">
+                            <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>${{subTotal}}</li>
+                            <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Shipping</span>${{shipping}}</li>
+                            </ul>
+                            <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
+                                style="font-size: 20px;">${{total}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
